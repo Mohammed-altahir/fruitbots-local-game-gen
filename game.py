@@ -15,11 +15,13 @@ game_name = 'fruitbots-%s-v-%s' % (player_1, player_2)
 if not os.path.isdir('tournament'):
     os.mkdir('tournament')
 
-os.system('cp -R ../fruitbots tournament/%s' % game_name)
+shutil.copytree('../robot-fruit-hunt', os.path.join('tournament', game_name))
+
+# Move to the game's dir.
 os.chdir(os.path.join('tournament', game_name))
 
 def get_bot_src(player):
-    return os.path.expanduser(os.path.join('~', 'code', 'fruitbots', 'bots', player + '.js'))
+    return os.path.join('bots', player + '.js')
 
 def namespace_function(player_code, fn_name, player_num):
     for i, line in enumerate(player_code):
