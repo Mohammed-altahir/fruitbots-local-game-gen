@@ -31,12 +31,15 @@ def namespace_function(player_code, fn_name, player_num):
             player_code[i] = line.replace(fn_name, fn_name + '_' + str(player_num))
     return player_code
 
-def switch_position_functions(player_code):
+def switch_position_and_item_count_functions(player_code):
     # switches get_my_x, get_my_y with get_opponent_x and get_opponent_y
     for i, line in enumerate(player_code):
         line = line.replace('get_my_x', 'want_my_x').replace('get_my_y', 'want_my_y')
         line = line.replace('get_opponent_x', 'get_my_x').replace('get_opponent_y', 'get_my_y')
         line = line.replace('want_my_x', 'get_opponent_x').replace('want_my_y', 'get_opponent_y')
+        line = line.replace('get_my_item_count', 'want_my_item_count')
+        line = line.replace('get_opponent_item_count', 'get_my_item_count')
+        line = line.replace('want_my_item_count', 'get_opponent_item_count')
         player_code[i] = line
     return player_code
 
@@ -51,7 +54,7 @@ for player_num in [1, 2]:
         lines = namespace_function(lines, 'new_game', player_num)
         lines = namespace_function(lines, 'make_move', player_num)
         if player_num == 2:
-            lines = switch_position_functions(lines)
+            lines = switch_position_and_item_count_functions(lines)
     with open('player_%s.js' % player_num, 'w') as player_src:
         player_src.write(''.join(lines))
 
