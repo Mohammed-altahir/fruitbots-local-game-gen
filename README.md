@@ -8,9 +8,10 @@ directory above this one because there is some file copying required to make
 games work as expected.
 
 Also note that this was built with a few assumptions in mind:
-# You cloned `robot-fruit-hunt` to the directory above where you cloned down
+
+1. You cloned `robot-fruit-hunt` to the directory above where you cloned down
 this one without changing the name.
-# Your `open` command acts like OS X's.
+2. Your `open` command acts like OS X's.
 
 # Usage
 `game.py` is used to generate player vs player matches of fruitbots for local
